@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_main_content_page"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+    </android.support.v4.view.ViewPager>
+
+    <RadioGroup
+        android:id="@+id/rg_content_radios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_tab_bg"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/rb_main_content_main"
+            style="@style/radioButtonStyle"
+            android:drawableTop="@drawable/rb_home_selector"
+            android:text="MAIN" />
+
+        <RadioButton
+            android:id="@+id/rb_main_content_newscenter"
+            style="@style/radioButtonStyle"
+            android:drawableTop="@drawable/rb_newscenter_selector"
+            android:text="NEWS" />
+
+        <RadioButton
+            android:id="@+id/rb_main_content_smartservice"
+            style="@style/radioButtonStyle"
+            android:drawableTop="@drawable/rb_smartservices_selector"
+            android:text="Service" />
+
+        <RadioButton
+            android:id="@+id/rb_main_content_govafairs"
+            style="@style/radioButtonStyle"
+            android:drawableTop="@drawable/rb_govaffairs_selector"
+            android:text="fairs" />
+
+        <RadioButton
+            android:id="@+id/rb_main_content_settingcenter"
+            style="@style/radioButtonStyle"
+            android:drawableTop="@drawable/rb_settingcenter_selector"
+            android:text="Setting" />
+    </RadioGroup>
+
+</LinearLayout>
