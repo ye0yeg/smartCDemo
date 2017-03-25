@@ -3,6 +3,7 @@
 package com.example.sbj.activity;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
@@ -19,7 +20,7 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
  * 
  */
 public class MainActivity extends SlidingFragmentActivity {
-
+ 
 	private static final String	LEFT_MUNE_TAG	= "left";
 	private static final String	MAIN_MUNE_TAG	= "menu";
 
@@ -30,6 +31,26 @@ public class MainActivity extends SlidingFragmentActivity {
 		initData();// 初始化数据
 	}
 
+	/**
+	 * 获取左侧菜单的fg
+	 * @return
+	 */
+	public LeftMenuFragment getLeftMenuFragment(){
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		LeftMenuFragment leftFragment = (LeftMenuFragment) fragmentManager.findFragmentByTag(LEFT_MUNE_TAG);
+		return leftFragment;
+		
+	}
+	/**
+	 * 获取主菜单的fg
+	 * @return
+	 */
+	public MainContentFragment getMainMenuFragment(){
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		MainContentFragment mainFragment = (MainContentFragment) fragmentManager.findFragmentByTag(MAIN_MUNE_TAG);
+		return mainFragment;
+		
+	}
 	/**
 	 * 初始化数据
 	 */
