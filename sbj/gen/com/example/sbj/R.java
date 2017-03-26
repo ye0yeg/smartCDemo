@@ -1821,6 +1821,7 @@ containing a value of this type.
         public static final int highlighted_text_material_light=0x7f070025;
         public static final int hint_foreground_material_dark=0x7f070022;
         public static final int hint_foreground_material_light=0x7f070023;
+        public static final int leftmenu_list_item_tv_color=0x7f070045;
         public static final int material_blue_grey_800=0x7f070037;
         public static final int material_blue_grey_900=0x7f070038;
         public static final int material_blue_grey_950=0x7f070039;
@@ -1849,7 +1850,7 @@ containing a value of this type.
         /**  26% of default values 
          */
         public static final int primary_text_disabled_material_light=0x7f07002a;
-        public static final int rb_color_selector=0x7f070045;
+        public static final int rb_color_selector=0x7f070046;
         /**  20% white (foreground) 
          */
         public static final int ripple_material_dark=0x7f07000e;
@@ -1866,8 +1867,8 @@ containing a value of this type.
         public static final int secondary_text_disabled_material_light=0x7f07002b;
         public static final int switch_thumb_disabled_material_dark=0x7f070016;
         public static final int switch_thumb_disabled_material_light=0x7f070017;
-        public static final int switch_thumb_material_dark=0x7f070046;
-        public static final int switch_thumb_material_light=0x7f070047;
+        public static final int switch_thumb_material_dark=0x7f070047;
+        public static final int switch_thumb_material_light=0x7f070048;
         public static final int switch_thumb_normal_material_dark=0x7f070014;
         public static final int switch_thumb_normal_material_light=0x7f070015;
     }
@@ -2151,25 +2152,26 @@ containing a value of this type.
         public static final int home_press=0x7f020056;
         public static final int ic_launcher=0x7f020057;
         public static final int img_menu=0x7f020058;
-        public static final int menu_arr_normal=0x7f020059;
-        public static final int menu_arr_select=0x7f02005a;
-        public static final int news_tab_item_bg_select=0x7f02005b;
-        public static final int newscenter=0x7f02005c;
-        public static final int newscenter_press=0x7f02005d;
-        public static final int notification_template_icon_bg=0x7f02006b;
-        public static final int rb_govaffairs_selector=0x7f02005e;
-        public static final int rb_home_selector=0x7f02005f;
-        public static final int rb_newscenter_selector=0x7f020060;
-        public static final int rb_settingcenter_selector=0x7f020061;
-        public static final int rb_smartservices_selector=0x7f020062;
-        public static final int red_point=0x7f020063;
-        public static final int setting=0x7f020064;
-        public static final int setting_press=0x7f020065;
-        public static final int smartservice=0x7f020066;
-        public static final int smartservice_press=0x7f020067;
-        public static final int splash_bg_newyear_1=0x7f020068;
-        public static final int splash_sheep_newyear=0x7f020069;
-        public static final int title_red_bg=0x7f02006a;
+        public static final int leftmenu_list_item_arr_color=0x7f020059;
+        public static final int menu_arr_normal=0x7f02005a;
+        public static final int menu_arr_select=0x7f02005b;
+        public static final int news_tab_item_bg_select=0x7f02005c;
+        public static final int newscenter=0x7f02005d;
+        public static final int newscenter_press=0x7f02005e;
+        public static final int notification_template_icon_bg=0x7f02006c;
+        public static final int rb_govaffairs_selector=0x7f02005f;
+        public static final int rb_home_selector=0x7f020060;
+        public static final int rb_newscenter_selector=0x7f020061;
+        public static final int rb_settingcenter_selector=0x7f020062;
+        public static final int rb_smartservices_selector=0x7f020063;
+        public static final int red_point=0x7f020064;
+        public static final int setting=0x7f020065;
+        public static final int setting_press=0x7f020066;
+        public static final int smartservice=0x7f020067;
+        public static final int smartservice_press=0x7f020068;
+        public static final int splash_bg_newyear_1=0x7f020069;
+        public static final int splash_sheep_newyear=0x7f02006a;
+        public static final int title_red_bg=0x7f02006b;
     }
     public static final class id {
         public static final int action0=0x7f050066;

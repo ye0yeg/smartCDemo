@@ -50,6 +50,10 @@ public class BaseTagPage {
 
 	public void initData() {
 	}
+	
+	public void switchPage(int position){
+		
+	}
 
 	// 获取根布局
 	public View getRoot() {

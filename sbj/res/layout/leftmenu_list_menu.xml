@@ -5,9 +5,11 @@
     android:text="news"
     android:textSize="20sp"
     android:padding="10dp"
+    android:enabled="false"
     android:layout_marginLeft="10dp"
+    android:textColor="@color/leftmenu_list_item_tv_color"
     android:drawablePadding="10dp"
-    android:drawableLeft="@drawable/menu_arr_select"
+    android:drawableLeft="@drawable/leftmenu_list_item_arr_color"
      >
     
 

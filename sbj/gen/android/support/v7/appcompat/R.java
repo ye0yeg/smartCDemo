@@ -307,8 +307,8 @@ public final class R {
 		public static final int secondary_text_disabled_material_light = 0x7f07002b;
 		public static final int switch_thumb_disabled_material_dark = 0x7f070016;
 		public static final int switch_thumb_disabled_material_light = 0x7f070017;
-		public static final int switch_thumb_material_dark = 0x7f070046;
-		public static final int switch_thumb_material_light = 0x7f070047;
+		public static final int switch_thumb_material_dark = 0x7f070047;
+		public static final int switch_thumb_material_light = 0x7f070048;
 		public static final int switch_thumb_normal_material_dark = 0x7f070014;
 		public static final int switch_thumb_normal_material_light = 0x7f070015;
 	}
@@ -465,7 +465,7 @@ public final class R {
 		public static final int abc_textfield_search_activated_mtrl_alpha = 0x7f020048;
 		public static final int abc_textfield_search_default_mtrl_alpha = 0x7f020049;
 		public static final int abc_textfield_search_material = 0x7f02004a;
-		public static final int notification_template_icon_bg = 0x7f02006b;
+		public static final int notification_template_icon_bg = 0x7f02006c;
 	}
 	public static final class id {
 		public static final int action0 = 0x7f050066;
