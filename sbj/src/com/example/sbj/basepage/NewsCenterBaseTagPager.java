@@ -112,8 +112,6 @@ public class NewsCenterBaseTagPager extends BaseTagPage {
 		}
 		//控制4个页面的显示
 		switchPage(0);
-		
-		
 	}
 	/**
 	 * 根据位置动态显示不同的新闻中心页面
