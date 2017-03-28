@@ -12,7 +12,9 @@ import android.widget.TextView;
 
 import com.example.sbj.R;
 import com.example.sbj.activity.MainActivity;
+import com.example.sbj.domain.NewsCenterData;
 import com.example.sbj.domain.NewsCenterData.NewsData.ViewTagData;
+import com.example.sbj.newstpipage.TPINewsNewscenterPage;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -83,12 +85,16 @@ public class NewsBaseNewsCenterPage extends BaseNewsCenterPage {
 
 		@Override
 		public Object instantiateItem(ViewGroup container, int position) {
-			TextView tv = new TextView(mainActivity);
+			TPINewsNewscenterPage tpiPager = new TPINewsNewscenterPage(mainActivity,viewTagDatas.get(position));
+			View rootView = tpiPager.getRootView();
+			container.addView(rootView);
+			return container;
+			/*TextView tv = new TextView(mainActivity);
 			tv.setText(viewTagDatas.get(position).title);
 			tv.setTextSize(25);
 			tv.setGravity(Gravity.CENTER);
 			container.addView(tv);
-			return tv;
+			return tv;*/
 		}
 		
 		@Override
@@ -103,6 +109,9 @@ public class NewsBaseNewsCenterPage extends BaseNewsCenterPage {
 			return arg0==arg1;
 		}
 		
+		
+		//U should Know I Just wanna be alone.
+		// Alone, but not sad.
 		
 		
 	}
