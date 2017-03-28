@@ -16,7 +16,7 @@ public abstract class BaseNewsCenterPage {
 		root = initView();
 		initEvent();
 	}
-	
+	//TEXTGITTTT
 	public void initEvent(){};
 	/**
 	 * 覆盖此方法来现实自定义VIEW
