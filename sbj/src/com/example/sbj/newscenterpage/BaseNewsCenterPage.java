@@ -16,7 +16,7 @@ public abstract class BaseNewsCenterPage {
 		root = initView();
 		initEvent();
 	}
-	//TEXTGITTTT
+	//TEXTGITTTT, 现在的推送应该在trunk干下了吧
 	public void initEvent(){};
 	/**
 	 * 覆盖此方法来现实自定义VIEW
