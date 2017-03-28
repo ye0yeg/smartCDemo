@@ -3,6 +3,7 @@ package com.example.sbj.basepage;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.TextView;
 
@@ -14,6 +15,7 @@ import com.example.sbj.newscenterpage.NewsBaseNewsCenterPage;
 import com.example.sbj.newscenterpage.PhotosBaseNewsCenterPage;
 import com.example.sbj.newscenterpage.TopicBaseNewsCenterPage;
 import com.example.sbj.utils.MyContants;
+import com.example.sbj.utils.SpTools;
 import com.example.sbj.view.LeftMenuFragment.OnSwitchPageListener;
 import com.google.gson.Gson;
 import com.lidroid.xutils.HttpUtils;
@@ -27,35 +29,45 @@ public class NewsCenterBaseTagPager extends BaseTagPage {
 	// 新闻中心要显示的4个页面
 	private List<BaseNewsCenterPage> newsCentPages = new ArrayList<BaseNewsCenterPage>();
 	private NewsCenterData newsCenterData;
+	private Gson	gson;
 
 	public NewsCenterBaseTagPager(MainActivity context) {
 		super(context);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.example.sbj.basepage.BaseTagPage#initData()
+	 * 先获取本地数据, 在获取网络数据。
+	 * 缓存
+	 */
 	@Override
 	public void initData() {
-		// 获取网络数据
+		//1 .获取本地数据
+		String jsonCache = SpTools.getString(mainActivity, MyContants.NEWSCENTERURL, "");
+		if(!TextUtils.isEmpty(jsonCache)){
+			//有本地数据, 解析
+			parseData(jsonCache);
+		}
+		//2. 获取网络数据
 		HttpUtils httpUtils = new HttpUtils();
 		httpUtils.send(HttpMethod.GET, MyContants.NEWSCENTERURL,
 				new RequestCallBack<String>() {
-
 					@Override
 					public void onSuccess(ResponseInfo<String> responseInfo) {
+						System.out.println("访问成功：");
 						// stupid
-						String result = responseInfo.result;
-						// 解析
-						// System.out.println(result);
-						// 解析
-						parseData(result);
+						String jsonData = responseInfo.result;
+						
+						//保留数据到本地
+						SpTools.setString(mainActivity, MyContants.NEWSCENTERURL, jsonData);
+						parseData(jsonData);
 					}
-
 					@Override
 					public void onFailure(HttpException error, String msg) {
 						System.out.println("访问失败：" + error);
 					}
 				});
 		tv_title.setText("News");
-
 		TextView tv = new TextView(mainActivity);
 		tv.setText("News Content");
 		tv.setTextSize(25);
@@ -65,14 +77,20 @@ public class NewsCenterBaseTagPager extends BaseTagPage {
 		super.initData();
 	}
 
+	@Override
+	public void initEvent() {
+		
+		super.initEvent();
+	}
 	/**
 	 * 解析json数据，从网络服务器解析
 	 * 
 	 * @param result
 	 */
 	protected void parseData(String result) {
-		// Google提供的json解析器
-		Gson gson = new Gson();
+		if(gson == null){
+			gson = new Gson();
+		}
 		newsCenterData = gson.fromJson(result,
 				NewsCenterData.class);
 		

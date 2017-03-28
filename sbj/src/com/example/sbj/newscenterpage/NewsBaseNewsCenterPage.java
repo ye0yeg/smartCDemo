@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,10 @@ import android.widget.TextView;
 import com.example.sbj.R;
 import com.example.sbj.activity.MainActivity;
 import com.example.sbj.domain.NewsCenterData.NewsData.ViewTagData;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
+import com.lidroid.xutils.view.annotation.event.OnClick;
 import com.viewpagerindicator.TabPageIndicator;
 
 public class NewsBaseNewsCenterPage extends BaseNewsCenterPage {
@@ -22,12 +25,40 @@ public class NewsBaseNewsCenterPage extends BaseNewsCenterPage {
 	private ViewPager vp_newscenter;
 	@ViewInject(R.id.newcenter_tpi)
 	private TabPageIndicator tpi_newcenter;
+	@OnClick(R.id.newcenter_ib_nextpage)
+	private void next(View v){
+		vp_newscenter.setCurrentItem(vp_newscenter.getCurrentItem()+1);
+	}
+	
 	//页签的数据
 	private List<ViewTagData> viewTagDatas; //页签的数据
 	
 	public NewsBaseNewsCenterPage(MainActivity mainActivity, List<ViewTagData> children) {
 		super(mainActivity);
 		this.viewTagDatas = children;
+	}
+	@Override
+	public void initEvent() {
+		tpi_newcenter.setOnPageChangeListener(new OnPageChangeListener() {
+			
+			@Override
+			public void onPageSelected(int arg0) {
+				if(arg0 == 0){
+					mainActivity.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+				}else{
+					mainActivity.getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
+				}
+			}
+			
+			@Override
+			public void onPageScrolled(int arg0, float arg1, int arg2) {
+			}
+			
+			@Override
+			public void onPageScrollStateChanged(int arg0) {
+			}
+		});
+		super.initEvent();
 	}
 	
 	@Override
