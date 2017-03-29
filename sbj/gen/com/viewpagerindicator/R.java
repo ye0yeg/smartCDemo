@@ -107,20 +107,20 @@ public final class R {
 		public static final int newscenter = 0x7f020062;
 		public static final int newscenter_press = 0x7f020063;
 		public static final int pic_item_list_default = 0x7f020064;
-		public static final int setting = 0x7f02006b;
-		public static final int setting_press = 0x7f02006c;
-		public static final int smartservice = 0x7f02006d;
-		public static final int smartservice_press = 0x7f02006e;
-		public static final int splash_bg_newyear_1 = 0x7f02006f;
-		public static final int splash_sheep_newyear = 0x7f020070;
-		public static final int title_red_bg = 0x7f020071;
-		public static final int vpi__tab_indicator = 0x7f020072;
-		public static final int vpi__tab_selected_focused_holo = 0x7f020073;
-		public static final int vpi__tab_selected_holo = 0x7f020074;
-		public static final int vpi__tab_selected_pressed_holo = 0x7f020075;
-		public static final int vpi__tab_unselected_focused_holo = 0x7f020076;
-		public static final int vpi__tab_unselected_holo = 0x7f020077;
-		public static final int vpi__tab_unselected_pressed_holo = 0x7f020078;
+		public static final int setting = 0x7f02006c;
+		public static final int setting_press = 0x7f02006d;
+		public static final int smartservice = 0x7f02006e;
+		public static final int smartservice_press = 0x7f02006f;
+		public static final int splash_bg_newyear_1 = 0x7f020070;
+		public static final int splash_sheep_newyear = 0x7f020071;
+		public static final int title_red_bg = 0x7f020072;
+		public static final int vpi__tab_indicator = 0x7f020073;
+		public static final int vpi__tab_selected_focused_holo = 0x7f020074;
+		public static final int vpi__tab_selected_holo = 0x7f020075;
+		public static final int vpi__tab_selected_pressed_holo = 0x7f020076;
+		public static final int vpi__tab_unselected_focused_holo = 0x7f020077;
+		public static final int vpi__tab_unselected_holo = 0x7f020078;
+		public static final int vpi__tab_unselected_pressed_holo = 0x7f020079;
 	}
 	public static final class id {
 		public static final int bottom = 0x7f0a000d;
