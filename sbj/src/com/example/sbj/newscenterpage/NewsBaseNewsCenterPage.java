@@ -88,7 +88,7 @@ public class NewsBaseNewsCenterPage extends BaseNewsCenterPage {
 			TPINewsNewscenterPage tpiPager = new TPINewsNewscenterPage(mainActivity,viewTagDatas.get(position));
 			View rootView = tpiPager.getRootView();
 			container.addView(rootView);
-			return container;
+			return rootView;
 			/*TextView tv = new TextView(mainActivity);
 			tv.setText(viewTagDatas.get(position).title);
 			tv.setTextSize(25);
