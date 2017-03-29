@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.graphics.Bitmap.Config;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -77,12 +79,14 @@ public class TPINewsNewscenterPage {
 
 	private int picSelectIndex;
 
+	private Handler handler;
+
 	public TPINewsNewscenterPage(MainActivity mainActivity,
 			ViewTagData viewTagData) {
 		this.mainActivity = mainActivity;
 		this.viewTagData = viewTagData;
 		gson = new Gson();
-
+		handler = new Handler();
 		// xutils bitmag 组件
 		bitmapUtils = new BitmapUtils(mainActivity);
 		bitmapUtils.configDefaultBitmapConfig(Config.ARGB_4444);
@@ -94,23 +98,23 @@ public class TPINewsNewscenterPage {
 
 	private void initEvent() {
 		vp_lunbo.setOnPageChangeListener(new OnPageChangeListener() {
-			
+
 			@Override
 			public void onPageSelected(int position) {
-				//当滑动完了
+				// 当滑动完了
 				picSelectIndex = position;
 				setPicDescAndPointSelect(picSelectIndex);
-				// Not things is change, 
+				// Not things is change,
 			}
-			
+
 			@Override
 			public void onPageScrolled(int arg0, float arg1, int arg2) {
-				
+
 			}
-			
+
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				
+
 			}
 		});
 	}
@@ -144,16 +148,34 @@ public class TPINewsNewscenterPage {
 
 		// 2 .轮播图点
 		initPoints();
-		
+
+		// 3 设置轮播图的效果
 		picSelectIndex = 0;
 		setPicDescAndPointSelect(picSelectIndex);
+
+		// 4处理轮播图
+		lunboProcess();
+	}
+
+	private void lunboProcess() {
+		handler.removeCallbacksAndMessages(null);
+		// 该线程是在主线程中执行的
+		handler.postDelayed(new Runnable() {
+
+			@Override
+			public void run() {
+				vp_lunbo.setCurrentItem((vp_lunbo.getCurrentItem() + 1)
+						% vp_lunbo.getAdapter().getCount());
+				handler.postDelayed(this, 500);
+			}
+		}, 500);
 	}
 
 	private void setPicDescAndPointSelect(int picSelectIndex) {
-		//设置描述信息
+		// 设置描述信息
 		tv_pic_desc.setText(lunboDatas.get(picSelectIndex).title);
-		
-		//点是否是选中的
+
+		// 点是否是选中的
 		for (int i = 0; i < lunboDatas.size(); i++) {
 			ll_points.getChildAt(i).setEnabled(i == picSelectIndex);
 		}
