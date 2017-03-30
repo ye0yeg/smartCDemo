@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.Window;
 
 import com.example.sbj.R;
 import com.example.sbj.view.LeftMenuFragment;
@@ -17,20 +18,22 @@ import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
  * @author shaoyyyy
  * @创建时间 2017-3-22 下午2:47:16
  * @描述 主界面
+ * But now I'm high ,
  * 
  */
 public class MainActivity extends SlidingFragmentActivity {
  
 	private static final String	LEFT_MUNE_TAG	= "left";
 	private static final String	MAIN_MUNE_TAG	= "menu";
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		initView();// 初始化界面
 		initData();// 初始化数据
 	}
-
+	
 	/**
 	 * 获取左侧菜单的fg
 	 * @return
