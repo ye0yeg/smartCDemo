@@ -21,6 +21,7 @@ import android.widget.ImageView.ScaleType;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.BaseAdapter;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -52,46 +53,46 @@ import com.lidroid.xutils.view.annotation.ViewInject;
  *     Jul 2015) $ @ 当前版本: $Rev: 40 $
  */
 public class TPINewsNewscenterPage {
-	private static final Class<Object>			TPINewsData	= null;
+	private static final Class<Object>				TPINewsData		= null;
 
 	// 所有组件
 
 	@ViewInject(R.id.vp_tpi_news_lunbo_pic)
-	private ViewPager							vp_lunbo;																				// 轮播图的显示组件
+	private ViewPager								vp_lunbo;																						// 轮播图的显示组件
 
 	@ViewInject(R.id.tv_tpi_news_pic_desc)
-	private TextView							tv_pic_desc;																			// 图片的描述信息
+	private TextView								tv_pic_desc;																					// 图片的描述信息
 
 	@ViewInject(R.id.ll_tpi_news_pic_points)
-	private LinearLayout						ll_points;																				// 轮播图的每张图片对应的点组合
+	private LinearLayout							ll_points;																						// 轮播图的每张图片对应的点组合
 
 	@ViewInject(R.id.lv_tpi_news_listnews)
-	private ListView							lv_listnews;																			// 显示列表新闻的组件
+	private com.example.sbj.view.RefreshListView	lv_listnews;																					// 显示列表新闻的组件
 
 	// 数据
-	private MainActivity						mainActivity;
-	private View								root;
-	private ViewTagData							viewTagData;																			// 页签对应的数据
+	private MainActivity							mainActivity;
+	private View									root;
+	private ViewTagData								viewTagData;																					// 页签对应的数据
 
-	private Gson								gson;
+	private Gson									gson;
 
 	// 轮播图的数据
-	private List<TPINewsData_Data_LunBoData>	lunboDatas	= new ArrayList<TPINewsData.TPINewsData_Data.TPINewsData_Data_LunBoData>();
+	private List<TPINewsData_Data_LunBoData>		lunboDatas		= new ArrayList<TPINewsData.TPINewsData_Data.TPINewsData_Data_LunBoData>();
 
 	// 轮播图的适配器
-	private LunBoAdapter						lunboAdapter;
+	private LunBoAdapter							lunboAdapter;
 
-	private BitmapUtils							bitmapUtils;
+	private BitmapUtils								bitmapUtils;
 
-	private int									picSelectIndex;
+	private int										picSelectIndex;
 
-	private Handler								handler;
+	private Handler									handler;
 
-	private LunBoTask	lunboTask;
+	private LunBoTask								lunboTask;
 
-	private List<TPINewsData_Data_ListNewsData>	listNews = null;
+	private List<TPINewsData_Data_ListNewsData>		listNews		= new ArrayList<TPINewsData.TPINewsData_Data.TPINewsData_Data_ListNewsData>();
 
-	private ListNewsAdapter	listNewsAdapter;
+	private ListNewsAdapter							listNewsAdapter	= null;
 
 	public TPINewsNewscenterPage(MainActivity mainActivity,
 			ViewTagData viewTagData) {
@@ -127,7 +128,7 @@ public class TPINewsNewscenterPage {
 
 			@Override
 			public void onPageScrollStateChanged(int arg0) {
-				
+
 			}
 		});
 	}
@@ -137,11 +138,9 @@ public class TPINewsNewscenterPage {
 		lunboAdapter = new LunBoAdapter();
 		// 给轮播图
 		vp_lunbo.setAdapter(lunboAdapter);
-		
+
 		listNewsAdapter = new ListNewsAdapter();
 		lv_listnews.setAdapter(listNewsAdapter);
-		
-		
 
 		// 从本地获取数据
 		String jsonCache = SpTools.getString(mainActivity, viewTagData.url, "");
@@ -173,19 +172,21 @@ public class TPINewsNewscenterPage {
 
 		// 4处理轮播图
 		lunboTask.startLunBo();
-//		lunboProcess();
-		
-//		5数据列表
+		// lunboProcess();
+
+		// 5数据列表
 		setListViewNews(newsData);
 	}
 
 	/**
 	 * NewList数据
+	 * 
 	 * @param newsData
 	 */
 	private void setListViewNews(TPINewsData newsData) {
+		// 更新界面
 		listNews = newsData.data.news;
-		
+		listNewsAdapter.notifyDataSetChanged();
 	}
 
 	private void lunboProcess() {
@@ -194,30 +195,30 @@ public class TPINewsNewscenterPage {
 		}
 		handler = new Handler() {
 			public void handleMessage(Message msg) {
-				
+
 			};
 		};
 		handler.removeCallbacksAndMessages(null);
-	 	// 该线程是在主线程中执行的
+		// 该线程是在主线程中执行的
 		handler.postDelayed(new Runnable() {
 
 			@Override
 			public void run() {
 				handler.obtainMessage().sendToTarget();
-				 vp_lunbo.setCurrentItem((vp_lunbo.getCurrentItem() + 1)
-				 % vp_lunbo.getAdapter().getCount());
-				 handler.postDelayed(this, 2000);
+				vp_lunbo.setCurrentItem((vp_lunbo.getCurrentItem() + 1)
+						% vp_lunbo.getAdapter().getCount());
+				handler.postDelayed(this, 2000);
 			}
 		}, 2000);
 	}
-	
-	private class  LunBoTask extends Handler implements Runnable{
-		public void startLunBo(){
+
+	private class LunBoTask extends Handler implements Runnable {
+		public void startLunBo() {
 			stopLunBo();
 			postDelayed(this, 2000);
 		}
-		
-		public void stopLunBo(){
+
+		public void stopLunBo() {
 			removeCallbacksAndMessages(null);
 		}
 
@@ -226,7 +227,7 @@ public class TPINewsNewscenterPage {
 			vp_lunbo.setCurrentItem((vp_lunbo.getCurrentItem() + 1)
 					% vp_lunbo.getAdapter().getCount());
 			postDelayed(this, 2000);
-			
+
 		}
 	}
 
@@ -258,15 +259,14 @@ public class TPINewsNewscenterPage {
 	private void setLunBoData(TPINewsData newsData) {
 		// 获取轮播图的数据
 		lunboDatas = newsData.data.topnews;
-
 		lunboAdapter.notifyDataSetChanged();// 更新界面
 	}
 
-	private class ListNewsAdapter extends BaseAdapter{
+	private class ListNewsAdapter extends BaseAdapter {
 
 		@Override
 		public int getCount() {
-			return 0;
+			return listNews.size();
 		}
 
 		@Override
@@ -281,11 +281,41 @@ public class TPINewsNewscenterPage {
 
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
-			return null;
+			ViewHolder holder = null;
+			if (convertView == null) {
+				convertView = View.inflate(mainActivity,
+						R.layout.tpi_news_listview_item, null);
+				holder = new ViewHolder();
+				// holder.iv_icon = (ImageView)
+				// convertView.findViewById(R.id.iv_news_tpi_listview_item_icon);
+				holder.iv_newspic = (ImageView) convertView
+						.findViewById(R.id.iv_news_tpi_listview_item_pic);
+				holder.tv_title = (TextView) convertView
+						.findViewById(R.id.tv_tpi_news_listview_item_title);
+				holder.tv_time = (TextView) convertView
+						.findViewById(R.id.tv_tpi_news_listview_item_time);
+				convertView.setTag(holder);
+			} else {
+				holder = (ViewHolder) convertView.getTag();
+			}
+			TPINewsData_Data_ListNewsData tpiNewsData_Data_ListNewsData = listNews
+					.get(position);
+			holder.tv_title.setText(tpiNewsData_Data_ListNewsData.title);
+			holder.tv_time.setText(tpiNewsData_Data_ListNewsData.pubdate);
+			bitmapUtils.display(holder.iv_newspic,
+					tpiNewsData_Data_ListNewsData.listimage);
+			// 设置图片
+			return convertView;
 		}
-		
 	}
-	
+
+	private class ViewHolder {
+		ImageView	iv_newspic;
+		TextView	tv_title;
+		TextView	tv_time;
+		ImageView	iv_icon;
+	}
+
 	/**
 	 * @author Administrator
 	 * @创建时间 2015-7-7 上午10:54:11
@@ -315,11 +345,12 @@ public class TPINewsNewscenterPage {
 			// 异步加载图片，并且显示到组件中
 			bitmapUtils.display(iv_lunbo_pic, topimageUrl);
 
-			//图片添加触摸事件
+			// 图片添加触摸事件
 			iv_lunbo_pic.setOnTouchListener(new OnTouchListener() {
 				private float	downX;
 				private float	downY;
 				private long	downTime;
+
 				@Override
 				public boolean onTouch(View v, MotionEvent event) {
 					switch (event.getAction()) {
@@ -332,9 +363,9 @@ public class TPINewsNewscenterPage {
 					case MotionEvent.ACTION_UP:
 						float upX = event.getX();
 						float upY = event.getY();
-						if(upX == downX && upY == downY ){
+						if (upX == downX && upY == downY) {
 							long endTime = System.currentTimeMillis();
-							if(endTime - downTime < 500){
+							if (endTime - downTime < 500) {
 								lunboPickClick("被点击了");
 							}
 						}
@@ -350,7 +381,7 @@ public class TPINewsNewscenterPage {
 					return false;
 				}
 			});
-			
+
 			container.addView(iv_lunbo_pic);
 
 			return iv_lunbo_pic;
@@ -411,6 +442,7 @@ public class TPINewsNewscenterPage {
 						// 处理数据
 						processData(newsData);
 					}
+
 					@Override
 					public void onFailure(HttpException error, String msg) {
 						// 请求数据失败
@@ -421,8 +453,12 @@ public class TPINewsNewscenterPage {
 	private void initView() {
 		// 页签对应页面的根布局
 		root = View.inflate(mainActivity, R.layout.tpi_news_content, null);
-
 		ViewUtils.inject(this, root);
+		View lunBoPic = View.inflate(mainActivity, R.layout.tpi_news_lunbopic,
+				null);
+		ViewUtils.inject(this, lunBoPic);
+		lv_listnews.addLunBoView(lunBoPic);
+
 	}
 
 	public View getRootView() {
