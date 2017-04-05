@@ -27,11 +27,6 @@ public class NewsBaseNewsCenterPage extends BaseNewsCenterPage {
 	private ViewPager vp_newscenter;
 	@ViewInject(R.id.newcenter_tpi)
 	private TabPageIndicator tpi_newcenter;
-	@OnClick(R.id.newcenter_ib_nextpage)
-	private void next(View v){
-		vp_newscenter.setCurrentItem(vp_newscenter.getCurrentItem()+1);
-	}
-	
 	//页签的数据
 	private List<ViewTagData> viewTagDatas; //页签的数据
 	
