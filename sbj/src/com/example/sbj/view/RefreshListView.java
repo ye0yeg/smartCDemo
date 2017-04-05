@@ -60,6 +60,7 @@ public class RefreshListView extends ListView {
 		// 按下
 		case MotionEvent.ACTION_DOWN:
 			downY = ev.getY();
+			//刷新了
 			break;
 		// 移动
 		case MotionEvent.ACTION_MOVE:
